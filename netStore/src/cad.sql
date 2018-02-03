@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQL
+Source Server         : Test
 Source Server Version : 50714
 Source Host           : localhost:3306
-Source Database       : cad
+Source Database       : aas
 
 Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-01-30 15:06:28
+Date: 2018-02-04 00:15:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,131 +20,180 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
-  `a_id` int(11) NOT NULL AUTO_INCREMENT,
-  `a_city` varchar(255) DEFAULT NULL,
-  `a_detail` varchar(255) DEFAULT NULL,
-  `a_province` varchar(255) DEFAULT NULL,
-  `a_town` varchar(255) DEFAULT NULL,
-  `user` int(11) DEFAULT NULL,
-  PRIMARY KEY (`a_id`),
-  KEY `FKjqkiweovolae560fxj8ryjppg` (`user`),
-  CONSTRAINT `FKjqkiweovolae560fxj8ryjppg` FOREIGN KEY (`user`) REFERENCES `user` (`u_id`)
+  `aId` varchar(255) NOT NULL,
+  `aCity` varchar(255) DEFAULT NULL,
+  `aDetail` varchar(255) DEFAULT NULL,
+  `aProvince` varchar(255) DEFAULT NULL,
+  `aTown` varchar(255) DEFAULT NULL,
+  `adefault` bit(1) DEFAULT NULL,
+  `user_uId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`aId`),
+  KEY `FKav22c63x9qdu465n8ybhwvl96` (`user_uId`),
+  CONSTRAINT `FKav22c63x9qdu465n8ybhwvl96` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of address
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
-  `c_id` int(11) NOT NULL AUTO_INCREMENT,
-  `c_desc` varchar(255) DEFAULT NULL,
-  `category_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`c_id`)
+  `cId` varchar(255) NOT NULL,
+  `cColor` varchar(255) DEFAULT NULL,
+  `cDesc` varchar(255) DEFAULT NULL,
+  `cName` varchar(255) DEFAULT NULL,
+  `cRom` int(11) DEFAULT NULL,
+  `cScreenSize` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of category
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for discuss
 -- ----------------------------
 DROP TABLE IF EXISTS `discuss`;
 CREATE TABLE `discuss` (
-  `d_id` int(11) NOT NULL AUTO_INCREMENT,
-  `d_discuss` varchar(255) DEFAULT NULL,
-  `d_score` int(11) DEFAULT NULL,
-  `product_p_id` int(11) DEFAULT NULL,
-  `user_u_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`d_id`),
-  KEY `FK5gd1ll1y7599nocv5oy3a4lmp` (`product_p_id`),
-  KEY `FKf42bx9wv26j7j7efhbvrd02v5` (`user_u_id`),
-  CONSTRAINT `FK5gd1ll1y7599nocv5oy3a4lmp` FOREIGN KEY (`product_p_id`) REFERENCES `product` (`p_id`),
-  CONSTRAINT `FKf42bx9wv26j7j7efhbvrd02v5` FOREIGN KEY (`user_u_id`) REFERENCES `user` (`u_id`)
+  `dId` varchar(255) NOT NULL,
+  `dContext` varchar(255) DEFAULT NULL,
+  `dDate` datetime DEFAULT NULL,
+  `dScore` int(11) DEFAULT NULL,
+  `product_pId` varchar(255) DEFAULT NULL,
+  `user_uId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`dId`),
+  KEY `FKgct84s1whkwv079gg9li3r5gy` (`product_pId`),
+  KEY `FKtq7rdaja0mih3uxibjhbm9987` (`user_uId`),
+  CONSTRAINT `FKgct84s1whkwv079gg9li3r5gy` FOREIGN KEY (`product_pId`) REFERENCES `product` (`pId`),
+  CONSTRAINT `FKtq7rdaja0mih3uxibjhbm9987` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of discuss
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for item
 -- ----------------------------
 DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
-  `i_id` int(11) NOT NULL AUTO_INCREMENT,
-  `i_number` int(11) DEFAULT NULL,
-  `i_price` double DEFAULT NULL,
-  `orderlist_o_id` int(11) DEFAULT NULL,
-  `product_p_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`i_id`),
-  KEY `FKg6grv9cf1pwqe09x0c91hmpo4` (`orderlist_o_id`),
-  KEY `FKqsgig37p0ugjavggv2h9dyyol` (`product_p_id`),
-  CONSTRAINT `FKg6grv9cf1pwqe09x0c91hmpo4` FOREIGN KEY (`orderlist_o_id`) REFERENCES `order_list` (`o_id`),
-  CONSTRAINT `FKqsgig37p0ugjavggv2h9dyyol` FOREIGN KEY (`product_p_id`) REFERENCES `product` (`p_id`)
+  `iId` varchar(255) NOT NULL,
+  `iDate` datetime DEFAULT NULL,
+  `iNumber` int(11) DEFAULT NULL,
+  `iPrice` double DEFAULT NULL,
+  `iSale` bit(1) DEFAULT NULL,
+  `orderlist_oId` varchar(255) DEFAULT NULL,
+  `product_pId` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`iId`),
+  KEY `FKcs9x7hs7qv62j8owo1xwcc3p8` (`orderlist_oId`),
+  KEY `FKq50wyq6lg3gu1hxdv6i9o6ub5` (`product_pId`),
+  CONSTRAINT `FKcs9x7hs7qv62j8owo1xwcc3p8` FOREIGN KEY (`orderlist_oId`) REFERENCES `orderlist` (`oId`),
+  CONSTRAINT `FKq50wyq6lg3gu1hxdv6i9o6ub5` FOREIGN KEY (`product_pId`) REFERENCES `product` (`pId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of item
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for message
 -- ----------------------------
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
-  `m_id` int(11) NOT NULL AUTO_INCREMENT,
-  `m_acceptor` int(11) DEFAULT NULL,
-  `m_message` varchar(255) DEFAULT NULL,
-  `m_sender` int(11) DEFAULT NULL,
-  `m_status` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`m_id`)
+  `mId` varchar(255) NOT NULL,
+  `mAcceptor` varchar(255) DEFAULT NULL,
+  `mContext` varchar(255) DEFAULT NULL,
+  `mSender` varchar(255) DEFAULT NULL,
+  `mStatus` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`mId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for order_list
+-- Records of message
 -- ----------------------------
-DROP TABLE IF EXISTS `order_list`;
-CREATE TABLE `order_list` (
-  `o_id` int(11) NOT NULL AUTO_INCREMENT,
-  `o_status` int(11) DEFAULT NULL,
-  `o_total` double DEFAULT NULL,
-  `user_u_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`o_id`),
-  KEY `FKr9rl5gt76w6w6ibfqhpfm98nq` (`user_u_id`),
-  CONSTRAINT `FKr9rl5gt76w6w6ibfqhpfm98nq` FOREIGN KEY (`user_u_id`) REFERENCES `user` (`u_id`)
+
+-- ----------------------------
+-- Table structure for orderlist
+-- ----------------------------
+DROP TABLE IF EXISTS `orderlist`;
+CREATE TABLE `orderlist` (
+  `oId` varchar(255) NOT NULL,
+  `oStatus` int(11) DEFAULT NULL,
+  `oTotal` double DEFAULT NULL,
+  `address_aId` varchar(255) DEFAULT NULL,
+  `user_uId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`oId`),
+  KEY `FKsgaogh1vylcbp8ue0ohqvcsqv` (`address_aId`),
+  KEY `FKh4mdbvcflsvt88cedv1eub5ej` (`user_uId`),
+  CONSTRAINT `FKh4mdbvcflsvt88cedv1eub5ej` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`),
+  CONSTRAINT `FKsgaogh1vylcbp8ue0ohqvcsqv` FOREIGN KEY (`address_aId`) REFERENCES `address` (`aId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of orderlist
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for picture
+-- ----------------------------
+DROP TABLE IF EXISTS `picture`;
+CREATE TABLE `picture` (
+  `picId` varchar(255) NOT NULL,
+  `pCount` int(11) DEFAULT NULL,
+  `pUrl` varchar(255) DEFAULT NULL,
+  `product_pId` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`picId`),
+  KEY `FK3y2jyn46b0o6l1mpkcitvh455` (`product_pId`),
+  CONSTRAINT `FK3y2jyn46b0o6l1mpkcitvh455` FOREIGN KEY (`product_pId`) REFERENCES `product` (`pId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of picture
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for product
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
-  `p_id` int(11) NOT NULL AUTO_INCREMENT,
-  `p_desc` varchar(255) DEFAULT NULL,
-  `p_name` varchar(255) DEFAULT NULL,
-  `p_number` int(11) DEFAULT NULL,
-  `p_price` double DEFAULT NULL,
-  `category_c_id` int(11) DEFAULT NULL,
-  `vender_v_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`p_id`),
-  KEY `FK6i0p76e6a6htioil0qtfcds3q` (`category_c_id`),
-  KEY `FKg8jyh54ajl2ltwnu920fd1dmb` (`vender_v_id`),
-  CONSTRAINT `FK6i0p76e6a6htioil0qtfcds3q` FOREIGN KEY (`category_c_id`) REFERENCES `category` (`c_id`),
-  CONSTRAINT `FKg8jyh54ajl2ltwnu920fd1dmb` FOREIGN KEY (`vender_v_id`) REFERENCES `vender` (`v_id`)
+  `pId` varchar(255) NOT NULL,
+  `pDesc` varchar(255) DEFAULT NULL,
+  `pName` varchar(255) DEFAULT NULL,
+  `pNumber` int(11) DEFAULT NULL,
+  `pPrice` double DEFAULT NULL,
+  `pSaleNum` int(11) DEFAULT NULL,
+  `pTemp` int(11) DEFAULT NULL,
+  `category_cId` varchar(255) DEFAULT NULL,
+  `user_uId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`pId`),
+  KEY `FKa48ewlch47gesm3eacjcecbor` (`category_cId`),
+  KEY `FKhto8dsrthuabshyi9qc8g7s5s` (`user_uId`),
+  CONSTRAINT `FKa48ewlch47gesm3eacjcecbor` FOREIGN KEY (`category_cId`) REFERENCES `category` (`cId`),
+  CONSTRAINT `FKhto8dsrthuabshyi9qc8g7s5s` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of product
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `u_id` int(11) NOT NULL AUTO_INCREMENT,
-  `u_name` varchar(255) DEFAULT NULL,
-  `u_password` varchar(255) DEFAULT NULL,
-  `u_sign` varchar(255) DEFAULT NULL,
-  `u_status` bit(1) NOT NULL,
-  PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `uId` int(11) NOT NULL,
+  `uGrade` int(11) DEFAULT NULL,
+  `uName` varchar(255) DEFAULT NULL,
+  `uPassword` varchar(255) DEFAULT NULL,
+  `uSign` varchar(255) DEFAULT NULL,
+  `uStatus` bit(1) NOT NULL,
+  PRIMARY KEY (`uId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for vender
+-- Records of user
 -- ----------------------------
-DROP TABLE IF EXISTS `vender`;
-CREATE TABLE `vender` (
-  `v_id` int(11) NOT NULL AUTO_INCREMENT,
-  `v_confirm` int(11) DEFAULT NULL,
-  `v_desc` varchar(255) DEFAULT NULL,
-  `v_name` varchar(255) DEFAULT NULL,
-  `v_password` varchar(255) DEFAULT NULL,
-  `v_status` bit(1) NOT NULL,
-  PRIMARY KEY (`v_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
