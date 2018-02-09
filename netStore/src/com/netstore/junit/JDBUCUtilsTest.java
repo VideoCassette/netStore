@@ -1,12 +1,14 @@
 package com.netstore.junit;
 
-import static org.junit.Assert.*;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 import org.junit.Test;
 
+import com.netstore.dao.BaseDao;
+import com.netstore.dao.UserDao;
+import com.netstore.entity.User;
 import com.netstore.utils.JDBCUtil;
 
 public class JDBUCUtilsTest {
@@ -20,6 +22,14 @@ public class JDBUCUtilsTest {
 		}
 		
 		
+	}
+	
+	@Test
+	public void testBaseDAO() throws Exception {
+		
+		UserDao userdao = new UserDao();
+		String sql = "SELECT * FROM USER";
+		List<User> findAll = userdao.findAll(sql);
 	}
 	
 }
