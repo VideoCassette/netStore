@@ -40,7 +40,7 @@ public class OrderlistN {
     }
 
     public void setAddressAid(String addressAid) {
-        this.addressAid;
+        this.addressAid = addressAid;
     }
 
     public Integer getUserUid() {
