@@ -1,7 +1,7 @@
 package com.netstore.entity.pure;
 
 public class UserN {
-    private Integer uid;
+    private String uid;
 
     private Integer ugrade;
 
@@ -13,11 +13,11 @@ public class UserN {
 
     private Boolean ustatus;
 
-    public Integer getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 

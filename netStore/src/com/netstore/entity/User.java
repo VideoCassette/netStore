@@ -17,7 +17,7 @@ public class User implements Serializable{
 	 * 类型为字符串
 	 * 生成策略为uuid
 	 */
-	private Integer uId;
+	private String uId;
 	
 	/**
 	 * 用户账号 
@@ -60,10 +60,10 @@ public class User implements Serializable{
 	
 	
 	//setter and getter
-	public Integer getuId() {
+	public String getuId() {
 		return uId;
 	}
-	public void setuId(Integer uId) {
+	public void setuId(String uId) {
 		this.uId = uId;
 	}
 	public String getuName() {

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-02-04 00:15:36
+Date: 2018-02-11 00:14:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,10 +26,10 @@ CREATE TABLE `address` (
   `aProvince` varchar(255) DEFAULT NULL,
   `aTown` varchar(255) DEFAULT NULL,
   `adefault` bit(1) DEFAULT NULL,
-  `user_uId` int(11) DEFAULT NULL,
+  `user_uId` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`aId`),
-  KEY `FKav22c63x9qdu465n8ybhwvl96` (`user_uId`),
-  CONSTRAINT `FKav22c63x9qdu465n8ybhwvl96` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`)
+  KEY `FKfasdfaasd` (`user_uId`),
+  CONSTRAINT `FKfasdfaasd` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -64,12 +64,12 @@ CREATE TABLE `discuss` (
   `dDate` datetime DEFAULT NULL,
   `dScore` int(11) DEFAULT NULL,
   `product_pId` varchar(255) DEFAULT NULL,
-  `user_uId` int(11) DEFAULT NULL,
+  `user_uId` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`dId`),
   KEY `FKgct84s1whkwv079gg9li3r5gy` (`product_pId`),
-  KEY `FKtq7rdaja0mih3uxibjhbm9987` (`user_uId`),
-  CONSTRAINT `FKgct84s1whkwv079gg9li3r5gy` FOREIGN KEY (`product_pId`) REFERENCES `product` (`pId`),
-  CONSTRAINT `FKtq7rdaja0mih3uxibjhbm9987` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`)
+  KEY `FKajlsdfkjasl` (`user_uId`),
+  CONSTRAINT `FKajlsdfkjasl` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`),
+  CONSTRAINT `FKgct84s1whkwv079gg9li3r5gy` FOREIGN KEY (`product_pId`) REFERENCES `product` (`pId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -125,12 +125,12 @@ CREATE TABLE `orderlist` (
   `oStatus` int(11) DEFAULT NULL,
   `oTotal` double DEFAULT NULL,
   `address_aId` varchar(255) DEFAULT NULL,
-  `user_uId` int(11) DEFAULT NULL,
+  `user_uId` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`oId`),
-  KEY `FKsgaogh1vylcbp8ue0ohqvcsqv` (`address_aId`),
-  KEY `FKh4mdbvcflsvt88cedv1eub5ej` (`user_uId`),
-  CONSTRAINT `FKh4mdbvcflsvt88cedv1eub5ej` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`),
-  CONSTRAINT `FKsgaogh1vylcbp8ue0ohqvcsqv` FOREIGN KEY (`address_aId`) REFERENCES `address` (`aId`)
+  KEY `FK_address_aId-aId` (`address_aId`),
+  KEY `FK_user_uId-uIdorderlist` (`user_uId`),
+  CONSTRAINT `FK_address_aId-aId` FOREIGN KEY (`address_aId`) REFERENCES `address` (`aId`),
+  CONSTRAINT `FK_user_uId-uIdorderlist` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -168,12 +168,12 @@ CREATE TABLE `product` (
   `pSaleNum` int(11) DEFAULT NULL,
   `pTemp` int(11) DEFAULT NULL,
   `category_cId` varchar(255) DEFAULT NULL,
-  `user_uId` int(11) DEFAULT NULL,
+  `user_uId` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`pId`),
-  KEY `FKa48ewlch47gesm3eacjcecbor` (`category_cId`),
-  KEY `FKhto8dsrthuabshyi9qc8g7s5s` (`user_uId`),
-  CONSTRAINT `FKa48ewlch47gesm3eacjcecbor` FOREIGN KEY (`category_cId`) REFERENCES `category` (`cId`),
-  CONSTRAINT `FKhto8dsrthuabshyi9qc8g7s5s` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`)
+  KEY `FKa48ewlch47gesm3eacjcecbor` (`category_cId`) USING BTREE,
+  KEY `FK_user_uId-uId` (`user_uId`),
+  CONSTRAINT `FK_category_cId-cId` FOREIGN KEY (`category_cId`) REFERENCES `category` (`cId`),
+  CONSTRAINT `FK_user_uId-uId` FOREIGN KEY (`user_uId`) REFERENCES `user` (`uId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -185,7 +185,7 @@ CREATE TABLE `product` (
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `uId` int(11) NOT NULL,
+  `uId` varchar(255) NOT NULL,
   `uGrade` int(11) DEFAULT NULL,
   `uName` varchar(255) DEFAULT NULL,
   `uPassword` varchar(255) DEFAULT NULL,
