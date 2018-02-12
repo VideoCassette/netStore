@@ -37,7 +37,8 @@ public class User implements Serializable{
 	 */
 	private boolean uStatus;
 	/**
-	 * 用户等级（1为超级用户，2为商家用户，3为普通消费者用户）
+	 * 用户等级（100为超级用户，200为商家用户，300为普通消费者用户）
+	 * 用户账号状态（主要针对商家）201已注册未审核 202已审核未通过 203已审核已通过
 	 */
 	private Integer uGrade;
 	

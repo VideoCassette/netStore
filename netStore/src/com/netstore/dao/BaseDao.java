@@ -154,9 +154,18 @@ public abstract class BaseDao<E> {
 	 * @throws SQLException
 	 * 
 	 */
-	public List<E> findAll(String SQL) throws SQLException {
-		Statement state = con.createStatement();
-		ResultSet query = state.executeQuery(SQL);
+	public List<E> findAll(String SQL)  {
+		Statement state;
+		ResultSet query =null;
+		try {
+			state = con.createStatement();
+			query = state.executeQuery(SQL);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 		List<E> useentities = (List<E>) this.sealEntities(query);
 		return null;
 
