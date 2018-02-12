@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.netstore.dao.BaseDao;
 import com.netstore.entity.pure.UserN;
@@ -22,7 +23,11 @@ public class UserDaoN extends BaseDao<UserN> {
 		String sql = "insert into user"
 				+ "(uId,uGrade,uName,uPassword,uSign,uStatus) "
 				+ "values(?,?,?,?,?,?)";
-
+		//生成UUID主键
+		UUID random = UUID.randomUUID();
+		String uid = random.toString().replace("_", "");
+		userN.setUid(uid);
+		
 		return this.add(sql, userN.getUid(),userN.getUgrade(),
 				userN.getUname(),userN.getUpassword(),
 				userN.getUsign(),userN.getUstatus());
