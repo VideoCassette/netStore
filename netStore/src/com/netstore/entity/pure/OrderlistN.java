@@ -9,7 +9,7 @@ public class OrderlistN {
 
     private String addressAid;
 
-    private Integer userUid;
+    private String userUid;
 
     public String getOid() {
         return oid;
@@ -43,11 +43,11 @@ public class OrderlistN {
         this.addressAid = addressAid;
     }
 
-    public Integer getUserUid() {
+    public String getUserUid() {
         return userUid;
     }
 
-    public void setUserUid(Integer userUid) {
+    public void setUserUid(String userUid) {
         this.userUid = userUid;
     }
 }

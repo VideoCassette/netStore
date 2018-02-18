@@ -17,7 +17,7 @@ public class ProductN {
 
     private String categoryCid;
 
-    private Integer userUid;
+    private String userUid;
 
     public String getPid() {
         return pid;
@@ -83,11 +83,11 @@ public class ProductN {
         this.categoryCid = categoryCid;
     }
 
-    public Integer getUserUid() {
+    public String getUserUid() {
         return userUid;
     }
 
-    public void setUserUid(Integer userUid) {
-        this.userUid = userUid;
+    public void setUserUid(String string) {
+        this.userUid = string;
     }
 }

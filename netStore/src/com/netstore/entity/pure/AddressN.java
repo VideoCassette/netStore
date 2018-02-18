@@ -13,7 +13,7 @@ public class AddressN {
 
     private Boolean adefault;
 
-    private Integer userUid;
+    private String userUid;
 
     public String getAid() {
         return aid;
@@ -63,11 +63,11 @@ public class AddressN {
         this.adefault = adefault;
     }
 
-    public Integer getUserUid() {
+    public String getUserUid() {
         return userUid;
     }
 
-    public void setUserUid(Integer userUid) {
-        this.userUid = userUid;
+    public void setUserUid(String string) {
+        this.userUid = string;
     }
 }

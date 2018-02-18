@@ -13,7 +13,7 @@ public class DiscussN {
 
     private String productPid;
 
-    private Integer userUid;
+    private String userUid;
 
     public String getDid() {
         return did;
@@ -55,11 +55,11 @@ public class DiscussN {
         this.productPid = productPid;
     }
 
-    public Integer getUserUid() {
+    public String getUserUid() {
         return userUid;
     }
 
-    public void setUserUid(Integer userUid) {
+    public void setUserUid(String userUid) {
         this.userUid = userUid;
     }
 }
