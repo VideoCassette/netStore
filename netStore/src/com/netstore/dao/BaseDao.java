@@ -167,7 +167,7 @@ public abstract class BaseDao<E> {
 		}
 		
 		List<E> useentities = (List<E>) this.sealEntities(query);
-		return null;
+		return useentities;
 
 	}
 
