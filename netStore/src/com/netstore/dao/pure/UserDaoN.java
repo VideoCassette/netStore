@@ -54,16 +54,12 @@ public class UserDaoN extends BaseDao<UserN> {
 
 	//6.条件查询用户
 	//6.1 根据用户等级查询用户（超级管理员、商家用户、消费者用户）（查询所有）
-	public List<UserN> findUsersByUGrade(int uGrade){
-		String sql = "select * from user where ugrade ="+uGrade;
-		return this.findAll(sql);
+	public UserN findUsersByUGrade(int uGrade){
+		String sql = "select * from user where ugrade =?";
+		return this.find(sql, uGrade);
 		 
 	}
-	public List<UserN> findUsersBetweenUGrade(int low,int high){
-		String sql = "select * from user where ugrade between "+low+" and "+high;
-		return this.findAll(sql);
-		 
-	}
+	
 	@Override
 	public UserN sealEntity(ResultSet resultset) {
 		// TODO Auto-generated method stub

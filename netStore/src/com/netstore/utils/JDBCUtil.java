@@ -37,12 +37,19 @@ public class JDBCUtil {
 		inStream = JDBCUtil.class.getClassLoader().getResourceAsStream(
 				"jdbc.properties");
 		try {
+			
 			prop.load(inStream);
+			for (Object obj : prop.keySet()) {
+				System.out.println(obj);
+				System.out.println("-----------");
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		USER =  prop.getProperty("USER");
+		
+		System.out.println(USER);
 		PASSWD = prop.getProperty("PASSWD");
 		URL = prop.getProperty("URL");
 		DRIVER = prop.getProperty("DRIVER");
