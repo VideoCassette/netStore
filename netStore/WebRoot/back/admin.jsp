@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <ul style="display:block">
   	<li><a href="back/userlist.jsp" target="right"><span class="icon-caret-right"></span>增加商品</a></li>
     <li><a href="back/userlist.jsp" target="right"><span class="icon-caret-right"></span>修改商品</a></li>
-    <li><a href="back/productlist.jsp" target="right"><span class="icon-caret-right"></span>删除商品</a></li>
+    <li><a href="productServlet?op=del" target="right"><span class="icon-caret-right"></span>删除商品</a></li>
       
     <li><a href="productServlet?op=query" target="right"><span class="icon-caret-right"></span>查询商品</a></li>   
   </ul>   

@@ -16,15 +16,15 @@ public class ProductDao extends DaseDao<Product> implements GetEntity<Product>{
 
 	
 
-	public ArrayList<Product> getAllProduct()
+	public ArrayList<Product> getAllProduct(String productid)
 	{
 		ArrayList<Product> articleList = new ArrayList<Product>();
 		String sql="select * from product where 1=1 ";
 		StringBuffer sb = new StringBuffer(sql);
 	
-//		if(title!=null &&!"".equals(title)){
-//			sb.append(" and articletitle like '%"+title+"%'");
-//		}
+		if(productid!=null &&!"".equals(productid)){
+			sb.append(" and pId like '%"+productid+"%'");
+		}
 //		
 //		if(author!=null &&!"".equals(author)){
 //			sb.append(" and author like '%"+author+"%'");
@@ -35,9 +35,19 @@ public class ProductDao extends DaseDao<Product> implements GetEntity<Product>{
 		System.out.println("sql"+sb.toString());
 		return articleList;
 	}
+
+
+	/**
+	 * 删除
+	 * @param pid
+	 * @return
+	 */
+	public int delProduct(int pid){
+		String sql="delete from product where pId =?";
+		return this.exeSql(sql,pid);
+		
+	}
 	
-
-
 
 	@Override
 	public Product getEntity(ResultSet rs) throws SQLException {

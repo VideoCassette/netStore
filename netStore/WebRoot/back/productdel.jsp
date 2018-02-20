@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>产品查询</title>  
+    <title>产品删除</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <div class="cl pd-5 bg-1 bk-gray mt-20"> <!-- <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>  -->
+      <div class="cl pd-5 bg-1 bk-gray mt-20"> <!-- <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>  -->
 			<!-- <a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a> --><!-- </span>  -->
 			<div class="text-c">
 			<!-- 身份：<select class="form-controlSearch mycheck" data-column="7" id="col7_filter" style="width:100px;">
@@ -34,14 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<option value="买家">买家</option>
 			<option value="卖家">卖家</option>
 		</select>&nbsp; -->
-			是否自动检索：<input type="checkbox" id="autoSearch">&nbsp;&nbsp;
-			<form role="form" class="form-inline" method="post" action="productServlet?op=query" >
-		   	产品ID：<!-- 关键是 data-column="？" 表示根据哪个列的数据搜索-->
-		  	 	<input type="text" name="productid" class="productid" id="productid" placeholder="输入产品ID" data-column="0" id="col0_filter" style="width:150px;">
-		        &nbsp;
-		       
-				<button type="submit" class="btn btn-success radius" id="search" name="">查询产品</button>
-			</form>
+			
 			</div>
 			<div class="mt-20">
 				<table id="example" class="table table-border table-bordered table-hover table-bg table-sort " >
@@ -55,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th>产品状态</th>
 							<th>产品价格</th>
 							<th>产品销量</th>
-						
+							<th>操作</th>
 							<!-- <th>操作</th> -->
 						</tr>
 						
@@ -70,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th>${_type.pId}</th>
 							<th>${_type.pPrice}</th>
 							<th>${_type.pSaleNum}</th>
-						
+							<th><button id="btn_del" class="btn_del">删除</button></th>
 						</tr>
 					</c:forEach>
 								
@@ -81,5 +74,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</article>
 	</div>
 </section>
+
+ <!-- 删除事件 -->
+    <script type="text/javascript">
+    	//删除按钮事件
+    	$(function(){    	
+	    	$(".btn_del").click(function(){
+	    	
+	    	if(confirm('请确认是否要删除？')){
+		    	//取出当前这个按钮对应的行的第一列(id值)
+		    	var articleId = $(this).parents("tr").find("th").eq(0).text();
+		    	
+		    	//跳转
+		    	window.location.href="productServlet?op=del&articleId="+articleId;
+	    	}
+    	});
+    	});
+    
+    </script>
   </body>
 </html>

@@ -22,7 +22,7 @@ public class DBConnection {
 		String url="";
 		String user="";
 		String pwd="";
-		InputStream is = DBConnection.class.getResourceAsStream("/jdbc.properties");
+		InputStream is = DBConnection.class.getResourceAsStream("/jd.properties");
 		Properties p = new Properties();
 		Connection conn = null;
 		
