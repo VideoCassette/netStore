@@ -12,7 +12,10 @@ import com.netstore.entity.pure.CategoryN;
 public class CategoryDaoN extends BaseDao<CategoryN> {
 	
 	
-	//	1.增加分类
+	/**
+	 * 	1.增加分类
+	 * @param categoryN
+	 */
 	public void  addCategory(CategoryN categoryN){
 		UUID random = UUID.randomUUID();
 		String cid = random.toString().replace("-", "");
@@ -23,13 +26,20 @@ public class CategoryDaoN extends BaseDao<CategoryN> {
 	}
 	
 	
-	//	2.修改分类
+	/**
+	 * 	2.修改分类
+	 * @param categoryN
+	 */
 	public void  updateCategory(CategoryN categoryN){
 		String sql = "update category set cColor=?,cDesc=?,cName=?,cRom=?,cScreenSize=? where cId=?";
 		this.add(sql, categoryN.getCcolor(),categoryN.getCdesc(),categoryN.getCname(),
 				categoryN.getCrom(),categoryN.getCscreensize(),categoryN.getCid());
 	}
-	//	3.查询分类
+	/**
+	 * 	3.查询分类
+	 * @param cName
+	 * @return
+	 */
 	public CategoryN findCategoryByName(String cName){
 		String sql = "select * from category where cName = ?";
 		return this.find(sql, cName);
@@ -43,7 +53,10 @@ public class CategoryDaoN extends BaseDao<CategoryN> {
 		return this.findAll(sql);
 	}
 	
-	//	4.删除分类
+	/**
+	 * 	4.删除分类
+	 * @param cid
+	 */
 	
 	public void deleteCagtegory(Integer cid){
 		String sql = "delete from category where cId = ?";

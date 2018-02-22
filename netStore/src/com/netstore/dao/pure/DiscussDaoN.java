@@ -10,7 +10,10 @@ import com.netstore.dao.BaseDao;
 import com.netstore.entity.pure.DiscussN;
 
 public class DiscussDaoN extends BaseDao<DiscussN> {
-	//	1.添加评论
+	/**
+	 * 	1.添加评论
+	 * @param discussN
+	 */
 	public void addDiscuss(DiscussN discussN){
 		UUID random = UUID.randomUUID();
 		String did = random.toString().replace("-", "");
@@ -19,7 +22,10 @@ public class DiscussDaoN extends BaseDao<DiscussN> {
 		this.add(sql, discussN.getDid(),discussN.getDcontext(),
 				discussN.getDdate(),discussN.getProductPid(),discussN.getUserUid());
 	}
-	//	2.修改评论
+	/**
+	 * 	2.修改评论
+	 * @param discussN
+	 */
 	public void updateDiscuss(DiscussN discussN){
 		String sql = "update discuss set dContext=?,dDate=?,dScore=?,product_pId=?,user_uId=? where dId=? ";
 		
@@ -27,25 +33,48 @@ public class DiscussDaoN extends BaseDao<DiscussN> {
 				discussN.getDdate(),discussN.getProductPid(),discussN.getUserUid(),discussN.getDid());
 	}
 	
-	//	3.删除评论
+	/**
+	 * 	3.删除评论
+	 * @param did
+	 */
 	public void deleteDiscuss(String did){
 		String sql = "delete from discuss where did=?";
 		this.delete(sql, did);
 	}
 	
-	//	4.查询评论
+	/**
+	 * 	4.查询评论 （根据评分查询）
+	 * @param score
+	 * @return
+	 */
 	public List<DiscussN> findDiscussByScore(Integer score){
 		String sql = "select * from discuss where dScore="+score;
 		return this.findAll(sql);
 	}
+	/**
+	 * 查询评论小于score 的评论
+	 * @param score
+	 * @return
+	 */
 	public List<DiscussN> findDiscussLessThan(Integer score){
 		String sql = "select * from discuss where dScore<"+score;
 		return this.findAll(sql);
 	}
+	
+	/**
+	 * 查询评论大于score 的评论
+	 * @param score
+	 * @return
+	 */
 	public List<DiscussN> findDiscussMoreThan(Integer score){
 		String sql = "select * from discuss where dScore>"+score;
 		return this.findAll(sql);
 	}
+	/**
+	 * 查询所有评论
+	 * @param score
+	 * @return
+	 */
 	public List<DiscussN> findDiscuss(){
 		return this.findAll("select * from discuss");
 	}

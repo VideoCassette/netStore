@@ -12,7 +12,10 @@ import com.netstore.entity.pure.ItemN;
 public class ItemDaoN extends BaseDao<ItemN> {
 
 	
-	//	1.添加订单项
+	/**
+	 * 	1.添加订单项
+	 * @param itemN
+	 */
 	public void addItem(ItemN itemN){
 		String random = UUID.randomUUID().toString();
 		String iid = random.replace("-", "");
@@ -23,14 +26,21 @@ public class ItemDaoN extends BaseDao<ItemN> {
 		
 	}
 	
-	//	2.修改订单项
+	/**
+	 * 	2.修改订单项
+	 * @param itemN
+	 */
 	public void updateItem(ItemN itemN){
 		String sql = "update item set iDate=?,iNumber=?,iPrice=?,iSale=?,orderlist_oId=?,product_pId=? where iId=? ";
 		this.add(sql, itemN.getIdate(),itemN.getInumber(),itemN.getIprice(),
 				itemN.getIsale(),itemN.getOrderlistOid(),itemN.getProductPid(),itemN.getIid());
 	}
 	
-	//	3.查询订单项
+	/**
+	 * 	3.查询订单项   查询同一个订单的订单项
+	 * @param fk
+	 * @return
+	 */
 	public List<ItemN> findItemByFK(String fk){
 		String sql = "select * from item where orderlist_oId ="+fk;
 		return this.findAll(sql);
@@ -43,7 +53,10 @@ public class ItemDaoN extends BaseDao<ItemN> {
 	}
 	
 	
-	//	4.删除订单项
+	/**
+	 * 	4.删除订单项
+	 * @param iid
+	 */
 	public void deleteItem(String iid){
 		String sql = "delete from item where iId = ?";
 		this.delete(sql, iid);

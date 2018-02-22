@@ -12,7 +12,11 @@ import com.netstore.entity.pure.ProductN;
 
 public class ProductDaoN extends BaseDao<ProductN> {
 
-	// 1、添加商品
+	/**
+	 *  1、添加商品
+	 * @param productN
+	 * @return
+	 */
 	public Integer inertProduct(ProductN productN) {
 		String sql = "insert into product (pId,pDesc,pName,pNumber,pPrice,pSaleNum,pTemp,category_cId,user_uId)values(?,?,?,?,?,?,?,?,?)";
 
@@ -25,7 +29,11 @@ public class ProductDaoN extends BaseDao<ProductN> {
 				);
 	}
 
-	// 2、修改商品
+	/**
+	 *  2、修改商品
+	 * @param productN
+	 * @return
+	 */
 	public Integer updateProduct(ProductN productN){
 		String sql = "update product set pDesc=?,pName=?,pNumber=?,pPrice=?,pSaleNum=?,pTemp=?,category_cId=?,user_uId=? where pid=?";
 
@@ -36,26 +44,41 @@ public class ProductDaoN extends BaseDao<ProductN> {
 				);
 		
 	}
-	// 3、查询商品
-		//3.1查询所有商品
+	/**
+	 *  3、查询商品
+	 *  3.1查询所有商品
+	 * @return
+	 */
 	public List<ProductN> findProducts(){
 		String sql = "select * from product";
 		List<ProductN> productNs = this.findAll(sql);
 		return productNs;
 	}
-		//3.2根据pid查询商品
+	/**
+	 * 3.2根据pid查询商品
+	 * @param pid
+	 * @return
+	 */
 	public ProductN findProductNById(String pid){
 		String sql = "select * from product where pid = ?";
 		return this.find(sql, pid);
 	}
 	
 	
-	//3.3根据uid查询商品
+	/**
+	 * 3.3根据uid查询商品
+	 * @param user_uId
+	 * @return
+	 */
 	public List<ProductN> findProductNByUid(String user_uId){
 		String sql = "select * from product where user_uId = '"+user_uId+"'";
 		return this.findAll(sql);
 	}
-	// 4、删除商品（考虑级联删除Item表中的相关字段）
+	/**
+	 *  4、删除商品（考虑级联删除Item表中的相关字段）
+	 * @param productN
+	 * @return
+	 */
 	public Integer deleteProduct(ProductN productN){
 		//1、删除Item中的产品
 		String SQL = "delete from item where product_pId = '"+productN.getPid()+"'";
@@ -68,13 +91,6 @@ public class ProductDaoN extends BaseDao<ProductN> {
 		}else{
 			return 2;
 		}
-		//iId
-		//iDate
-		//iNumber
-		//iPrice
-		//iSale
-		//orderlist_oId
-		//product_pId
 
 	}
 

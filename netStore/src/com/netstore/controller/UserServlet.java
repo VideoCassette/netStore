@@ -20,14 +20,35 @@ public class UserServlet extends HttpServlet {
 		response.setContentType(" text/html;charset=utf-8");
 		
 		String op = request.getParameter("OP");
+		System.out.println(op);
 		if("queryUsers".equalsIgnoreCase(op)){
 			List<UserN> queryUsers = this.queryUsers();
 			request.setAttribute("queryUsers", queryUsers);
-			System.out.println(queryUsers.size());
 			request.getRequestDispatcher("/admin/userlist.jsp").forward(request, response);
 			return ;
 			
-		}
+		}else if("queryUserUnchecked".equalsIgnoreCase(op)){
+			
+			
+			List<UserN> queryUserUnchecked = this.queryUserUnchecked();
+			request.setAttribute("queryUsers", queryUserUnchecked);
+			request.getRequestDispatcher("/admin/userlist.jsp").forward(request, response);
+			return ;
+		}else if("checkedUser".equals(op)){
+			String uid = request.getParameter("uid");
+			this.checkedUser(uid);
+			List<UserN> queryUsers = this.queryUsers();
+			request.setAttribute("queryUsers", queryUsers);
+			request.getRequestDispatcher("/admin/userlist.jsp").forward(request, response);
+			return ;
+		}else if("unCheckedUser".equals(op)){
+		String uid = request.getParameter("uid");
+		this.unCheckedUser(uid);
+		List<UserN> queryUsers = this.queryUsers();
+		request.setAttribute("queryUsers", queryUsers);
+		request.getRequestDispatcher("/admin/userlist.jsp").forward(request, response);
+		return ;
+	}
 		
 	}
 
@@ -36,12 +57,38 @@ public class UserServlet extends HttpServlet {
 
 	}
 	/**
-	 * 控制台查询用户
+	 * 控制台查询所有用户
 	 * @return
 	 */
 	private List<UserN> queryUsers(){
 		UserService userservice = new UserService();
 		return userservice.queryUsers();
+	}
+	/**
+	 * 查询未审核用户
+	 * @return
+	 */
+	private List<UserN> queryUserUnchecked(){
+		UserService userservice = new UserService();
+		return userservice.queryUserUnchecked();
+	}
+	
+	/**
+	 * 审核用户
+	 * @return
+	 */
+	private Integer checkedUser(String uid){
+		UserService userservice = new UserService();
+		return userservice.checkUser(uid);
+	}
+	
+	/**
+	 * 用户禁用
+	 * @return
+	 */
+	private Integer unCheckedUser(String uid){
+		UserService userservice = new UserService();
+		return userservice.unCheckedUser(uid);
 	}
 	
 	

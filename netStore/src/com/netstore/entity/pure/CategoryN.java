@@ -1,16 +1,41 @@
 package com.netstore.entity.pure;
 
+/**
+ * 
+ * @author 陈东时
+ * @version 1.1
+ * 产品分类实体类
+ *
+ */
 public class CategoryN {
+	
+	/**
+	 * 分类id
+	 * 类型为字符串
+	 * 生成策略为UUID
+	 */
     private String cid;
-
+    /**
+	 * 手机颜色
+	 */
     private String ccolor;
-
+    /**
+	 * 分类描述
+	 */
     private String cdesc;
-
+    /**
+	 * 分类名称
+	 * 
+	 */
     private String cname;
-
+    /**
+	 * 内存大小
+	 */
     private Integer crom;
-
+	
+	/**
+	 * 屏幕大小
+	 */
     private Integer cscreensize;
 
     public String getCid() {

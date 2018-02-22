@@ -9,20 +9,29 @@ import com.netstore.dao.BaseDao;
 import com.netstore.entity.pure.MessageN;
 
 public class MessageDaoN extends BaseDao<MessageN> {
-	//	1.添加信息
+	/**
+	 * 	1.添加信息
+	 * @param messageN
+	 */
 	public void addMessage(MessageN messageN){
 		String sql = "insert into message(mId,mAcceptor,mContext,mSender,mStatus) VALUES(?,?,?,?,?)";
 		this.add(sql, messageN.getMid(), messageN.getMacceptor(),
 				messageN.getMcontext(), messageN.getMsender(), messageN.getMstatus());
 	}
 	
-	//	2.修改信息
+	/**
+	 * 	2.修改信息
+	 * @param messageN
+	 */
 	public void updateMessage(MessageN messageN){
 		String sql = "update message set mAcceptor=?,mContext=?,mSender=?,mStatus=? where mId=?";
 		this.update(sql, messageN.getMacceptor(),
 				messageN.getMcontext(), messageN.getMsender(), messageN.getMstatus(), messageN.getMid());
 	}
-	//	3.查询信息
+	/**
+	 * 	3.查询信息
+	 * @return
+	 */
 	public List<MessageN> findMessages(){
 		String sql = "select * from message";
 		return this.findAll(sql);
@@ -31,12 +40,21 @@ public class MessageDaoN extends BaseDao<MessageN> {
 		String sql = "select * from message where mAcceptor = "+mAcceptor;
 		return this.findAll(sql);
 	}
+	/**
+	 * 查询已读/未读信息
+	 * @param mAcceptor
+	 * @param flag
+	 * @return
+	 */
 	public List<MessageN> findMessageByAcceptorAnd(String mAcceptor, boolean flag){
 		String sql = "select * from message where mAcceptor = '"+mAcceptor+"' and mStatus = '"+ flag+"'";
 		return this.findAll(sql);
 	}
 	
-	//	4.删除信息
+	/**
+	 * 	4.删除信息
+	 * @param mId
+	 */
 	public void deleteMessage(String mId){
 		String sql = "delete from message where mId=?";
 		this.delete(sql, mId);

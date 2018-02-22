@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Administrator
- *
+ * @author 陈东时
+ * 订单实体类
  */
 public class OrderList implements Serializable  {
 	/**

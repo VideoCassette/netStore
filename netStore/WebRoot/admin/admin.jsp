@@ -28,7 +28,7 @@
   <h2><span class="icon-user"></span>商品管理</h2>
   <ul style="display:block">
   	<li><a href="${pageContext.request.contextPath }/servlet/UserServlet?OP=queryUsers" target="right"><span class="icon-caret-right"></span>查询用户</a></li>
-    <li><a href="userlist.jsp" target="right"><span class="icon-caret-right"></span>审核用户</a></li>
+    <li><a href="${pageContext.request.contextPath }/servlet/UserServlet?OP=queryUserUnchecked" target="right"><span class="icon-caret-right"></span>审核用户</a></li>
     <li><a href="productlist.jsp" target="right"><span class="icon-caret-right"></span>查询商品</a></li>
       
     <li><a href="productlist.jsp" target="right"><span class="icon-caret-right"></span>审核商品</a></li>   

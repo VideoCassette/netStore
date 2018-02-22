@@ -15,4 +15,21 @@ public class UserService {
 		
 	}
 	
+	public List<UserN> queryUserUnchecked(){
+		List<UserN> users = userdaoN.findUsersByUGrade(201);
+		return users;
+		
+	}
+	public Integer checkUser(String uid){
+		Integer row= userdaoN.checkUser(uid);
+		return row ;
+		
+	}
+
+	public Integer unCheckedUser(String uid) {
+		// TODO Auto-generated method stub
+		Integer row = userdaoN.unCheckedUser(uid);
+		return row;
+	}
+	
 }

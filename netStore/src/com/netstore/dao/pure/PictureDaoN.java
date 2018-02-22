@@ -11,7 +11,10 @@ import com.netstore.entity.pure.PictureN;
 
 public class PictureDaoN extends BaseDao<PictureN> {
 
-	// 1.添加图片
+	/**
+	 *  1.添加图片
+	 * @param pictureN
+	 */
 	public void addPicture(PictureN pictureN) {
 		UUID random = UUID.randomUUID();
 		String picId = random.toString().replace("-", "");
@@ -21,7 +24,10 @@ public class PictureDaoN extends BaseDao<PictureN> {
 				pictureN.getPurl(), pictureN.getProductPid());
 	}
 
-	// 2.修改图片
+	/**
+	 *  2.修改图片
+	 * @param pictureN
+	 */
 	public void updatePicture(PictureN pictureN) {
 		UUID random = UUID.randomUUID();
 		String picId = random.toString().replace("-", "");
@@ -31,17 +37,27 @@ public class PictureDaoN extends BaseDao<PictureN> {
 				pictureN.getProductPid(), pictureN.getPicid());
 	}
 
-	// 3.查询图片
+	/**
+	 *  3.查询图片
+	 * @param pid 通过产品id查询图片
+	 * @return
+	 */
 	public List<PictureN> findPictureByFK(String pid){
 		String sql = "select * from picture where product_pId='"+pid+"'";
 		return this.findAll(sql);
 	}
-	// 4.删除图片
+	/** 4.删除图片
+	 *  通过产品id删除图片
+	 * @param pid
+	 */
 	public void deletePictureByFk(String pid){
 		String sql = "delete from picture where product_pId=?";
 		this.delete(sql, pid);
 	}
-	
+	/**
+	 * 通过图片id删除图片
+	 * @param pid
+	 */
 	public void deletePictureById(String pid){
 		String sql = "delete from picture where picId=?";
 		this.delete(sql, pid);

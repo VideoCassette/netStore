@@ -13,7 +13,7 @@ import com.netstore.entity.Product;
  *
  */
 public class ProductDao extends DaseDao<Product> implements GetEntity<Product>{
-
+	
 	
 
 	public ArrayList<Product> getAllProduct(String productid)
@@ -47,7 +47,6 @@ public class ProductDao extends DaseDao<Product> implements GetEntity<Product>{
 		return this.exeSql(sql,pid);
 		
 	}
-	
 
 	@Override
 	public Product getEntity(ResultSet rs) throws SQLException {
@@ -61,7 +60,4 @@ public class ProductDao extends DaseDao<Product> implements GetEntity<Product>{
 		p.setpTemp(rs.getInt("pTemp"));
 		return p;
 	}
-
-
-	
 }

@@ -16,9 +16,29 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="renderer" content="webkit">
 <title>后台管理中心</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/pintuer.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/admin.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/pintuer.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/admin.css">
 <script src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+	function checked(obj) {
+		var uid = document.getElementById("text-c"+"${c.index}").value;
+
+		window.location.href = "${pageContext.request.contextPath }/servlet/UserServlet?OP=checkedUser&uid="
+				+ uid +"return=che";
+		
+
+	}
+	function unChecked(obj) {
+		var uid = document.getElementById("text-c"+"${c.index}").value;
+
+		window.location.href = "${pageContext.request.contextPath }/servlet/UserServlet?OP=unCheckedUser&uid="
+				+ uid;
+		
+
+	}
+</script>
 </head>
 <body>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
@@ -49,8 +69,9 @@
 				class="table table-border table-bordered table-hover table-bg table-sort ">
 				<thead>
 					<tr class="text-c">
-						<th ><input type="checkbox" name="" value="" id="employeeCheckAll">全选</th>
-							
+						<th><input type="checkbox" name="" value=""
+							id="employeeCheckAll">全选</th>
+
 
 						<th>用户ID</th>
 						<th>用户名称</th>
@@ -64,15 +85,13 @@
 				<tbody class="text-c">
 					<c:forEach items="${queryUsers }" var="user" varStatus="c">
 						<tr>
-						<td ><input type="checkbox" name="" value="${user.uid}"></td>
+							<td><input type="checkbox" name="uid" id="text-c"+${c.index}
+								value="${user.uid}"></td>
 							<td>${c.index}</td>
 							<td>${user.uname}</td>
 							<td>${user.ugrade}</td>
 							<td>${user.usign}</td>
-							<td>
-								<a href="#">通过</a>
-								<a href="#">未通过</a>
-							</td>
+							<td><a href="${pageContext.request.contextPath }/servlet/UserServlet?OP=checkedUser&uid=${user.uid }">通过</a> <a href="${pageContext.request.contextPath }/servlet/UserServlet?OP=unCheckedUser&uid=${user.uid }">未通过</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

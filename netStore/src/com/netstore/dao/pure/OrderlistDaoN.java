@@ -11,7 +11,10 @@ import com.netstore.entity.pure.OrderlistN;
 
 public class OrderlistDaoN extends BaseDao<OrderlistN> {
 
-	//	1.添加订单
+	/**
+	 * 	1.添加订单
+	 * @param orderlistN
+	 */
 	public void addOrderlist(OrderlistN orderlistN){
 		UUID random = UUID.randomUUID();
 		String oid = random.toString().replace("-", "");
@@ -23,25 +26,39 @@ public class OrderlistDaoN extends BaseDao<OrderlistN> {
 		
 	}
 	
-	//	2.修改订单
+	/**
+	 * 	2.修改订单
+	 * @param orderlistN
+	 */
 	public void updateOrderlist(OrderlistN orderlistN){
 		String sql = "update orderlist set oStatus=?,oTotal=?,address_aId=?,user_uId=? where oId=?";
 		this.update(sql,  orderlistN.getOstatus(), orderlistN.getOtotal(),
 				orderlistN.getAddressAid(), orderlistN.getUserUid(),orderlistN.getOid());
 	}
-	//	3.查询订单
+	/**
+	 * 	3.1查询用户的所有订单
+	 * @param uid
+	 * @return
+	 */
 	public List<OrderlistN> findOrderlistByUser(String uid){
 		String sql = "select * from user where user_uId='"+uid+"'";
 		return this.findAll(sql);
 	}
-	
+	/**
+	 * 	3.2查询用户的订单 
+	 * @param uid
+	 * @return
+	 */
 	public OrderlistN findOrderlistByUserAnd(String uid){
 		String sql = "select * from user where user_uId='"+uid+"' and oStatus=0 ";
 		return this.find(sql);
 	}
 	
 	
-	//	4.删除订单
+	/**
+	 * 	4.删除订单 入参为订单号id
+	 * @param oId
+	 */
 	public void deleteOrderlist(String oId){
 		String sql = "delete from orderlist where oId=?";
 		this.delete(sql, oId);

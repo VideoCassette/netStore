@@ -3,6 +3,7 @@ package com.netstore.junit;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.Test;
 
@@ -27,9 +28,9 @@ public class JDBUCUtilsTest {
 	@Test
 	public void testBaseDAO() throws Exception {
 		
-		UserDao userdao = new UserDao();
-		String sql = "SELECT * FROM USER";
-		List<User> findAll = userdao.findAll(sql);
+		UUID random = UUID.randomUUID();
+		String replace = random.toString().replace("-", "");
+		System.out.println(replace);
 	}
 	
 }
