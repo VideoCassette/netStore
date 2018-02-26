@@ -59,6 +59,11 @@ public class Product implements Serializable {
 	 * 与产品名称一样做为搜索栏的模糊搜索依据
 	 */
 	private String pDesc;
+	
+	/**
+	 * 产品审核状态，参见用户审核状态
+	 */
+	private Integer pState;
 	//////////////////////以下是外键关系//////////////
 	/**
 	 * 产品类别
@@ -148,6 +153,14 @@ public class Product implements Serializable {
 
 	public void setpDesc(String pDesc) {
 		this.pDesc = pDesc;
+	}
+
+	public Integer getpState() {
+		return pState;
+	}
+
+	public void setpState(Integer pState) {
+		this.pState = pState;
 	}
 
 	public Category getCategory() {
